@@ -20,4 +20,7 @@ public interface UserMapper {
     void deleteById(Integer id);
 
     List<User> selectByIds(List<Integer> ids);
+
+    @Select("select * from `user` where id = #{id}")
+    User selectByid(String userId);
 }
