@@ -92,6 +92,6 @@ public class UserService {
     }
 
     public User selectById(String userId) {
-        return
+        return userMapper.selectByid(userId);
     }
 }
