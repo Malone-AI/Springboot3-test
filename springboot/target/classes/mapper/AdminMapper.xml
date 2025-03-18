@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.AdminMapper">
+    <select id="selectAll" resultType="com.example.entity.Admin">
+        select * from `admin`
+        <where>
+            <if test="username != null and username != ''">username like concat('%', #{username}, '%')</if>
+            <if test="name != null and name != ''">and name like concat('%', #{name}, '%')</if>
+        </where>
+        order by id desc
+    </select>
+    
+    <insert id="insert">
+        insert into `admin` (username,  password, name, phone, email)
+        values(#{username}, #{password}, #{name}, #{phone}, #{email})
+    </insert>
+
+    <update id="updateById">
+        update `admin` set username = #{username}, password = #{password}, name = #{name}, phone = #{phone}, email = #{email}
+        where id = #{id}
+    </update>
+
+    <select id="selectByIds" resultType="com.example.entity.Admin">
+        select * from `admin` where id in
+            <foreach collection="list" item="id" open="(" separator="," close=")">
+                #{id}
+            </foreach>
+    </select>
+
+</mapper>
