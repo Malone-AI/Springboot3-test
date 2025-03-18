@@ -11,6 +11,7 @@
 *.sw?
 
 # Java/Maven 构建目录
+springboot/.idea/
 springboot/target/
 target/
 *.class
