@@ -77,6 +77,7 @@ import {Search} from "@element-plus/icons-vue";
 import request from "@/utils/request.js";
 import {ElMessage, ElMessageBox} from "element-plus";
 const data = reactive({
+  user: JSON.parse(localStorage.getItem('code_user') || '{}'),
   username: null,
   name: null,
   pageNum: 1,
@@ -215,10 +216,11 @@ const deleteBatch = () => {
 const exportData = () => {
   if (data.rows.length > 0) {
     const ids = data.rows.map(item => item.id)
-    let url = `http://localhost:9999/admin/exportBatch?ids=${ids}`
+    let url = `http://localhost:9999/admin/exportBatch?ids=${ids}&token=${data.user.token}`
     window.open(url)
   } else {
     let url = `http://localhost:9999/admin/export?username=${data.username === null ? '' : data.username}&name=${data.name === null ? '' : data.name}`
+    + `&token=${data.user.token}`
     window.open(url)
   }
 }
