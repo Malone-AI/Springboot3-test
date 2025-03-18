@@ -8,6 +8,8 @@ const request = axios.create({
 
 request.interceptors.request.use(config =>{
     config.headers['Content-Type'] = 'application/json;charset=utf-8';
+    let user = JSON.parse(localStorage.getItem("code_user") || '{}')
+    config.headers['token'] = user.token
     return config;
 }, error => {
     return Promise.reject(error)
