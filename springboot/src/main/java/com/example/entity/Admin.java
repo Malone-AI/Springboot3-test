@@ -8,6 +8,7 @@ public class Admin extends Account {
     private String phone;
     private String email;
     private String role;
+    private String token;
 
     public Integer getId() {
         return id;
@@ -63,5 +64,15 @@ public class Admin extends Account {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    @Override
+    public String getToken() {
+        return token;
+    }
+
+    @Override
+    public void setToken(String token) {
+        this.token = token;
     }
 }
