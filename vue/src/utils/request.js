@@ -1,5 +1,6 @@
 import axios from "axios"
 import {ElMessage} from "element-plus";
+import router from "@/router/index.js";
 
 const request = axios.create({
     baseURL: 'http://localhost:9999',
@@ -18,10 +19,15 @@ request.interceptors.request.use(config =>{
 request.interceptors.response.use(
     response => {
         let res = response.data;
-        if (typeof res == 'string') {
+        if (typeof res === 'string') {
             res = res ? JSON.parse(res) : res
         }
-        return res;
+        if (res.code === '401') {
+            ElMessage.error(res.msg)
+            router.push('/login')
+        } else {
+            return res;
+        }
     },
     error => {
         if (error.response && error.response.status) {
