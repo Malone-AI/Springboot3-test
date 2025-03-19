@@ -23,7 +23,8 @@
         <el-table-column type="selection" width="55"/>
         <el-table-column label="头像">
           <template #default="scope">
-            <img v-if="scope.row.avatar" :src="scope.row.avatar" style="width: 40px; height: 40px; border-radius: 50%; display: block"/>
+            <el-image v-if="scope.row.avatar" :src="scope.row.avatar" :preview-src-list="[scope.row.avatar]" :preview-teleported="true"
+                      style="width: 40px; height: 40px; border-radius: 50%; display: block"/>
           </template>
         </el-table-column>
         <el-table-column prop="username" label="账号"/>
