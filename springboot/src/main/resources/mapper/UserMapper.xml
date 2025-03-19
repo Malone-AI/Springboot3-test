@@ -18,7 +18,8 @@
     </insert>
 
     <update id="updateById">
-        update `user` set username = #{username}, password = #{password}, name = #{name}, phone = #{phone}, email = #{email}
+        update `user` set username = #{username}, password = #{password}, name = #{name},
+        phone = #{phone}, email = #{email}, avatar = #{avatar}
         where id = #{id}
     </update>
 
