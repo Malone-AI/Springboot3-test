@@ -13,8 +13,8 @@
     </select>
     
     <insert id="insert">
-        insert into `user` (username,  password, name, phone, email)
-        values(#{username}, #{password}, #{name}, #{phone}, #{email})
+        insert into `user` (username,  password, name, phone, email, avatar)
+        values(#{username}, #{password}, #{name}, #{phone}, #{email}, #{avatar})
     </insert>
 
     <update id="updateById">
