@@ -1,13 +1,16 @@
 package com.example.controller;
 
 import cn.hutool.core.io.FileUtil;
+import com.example.common.Result;
 import com.example.exception.CustomerException;
 import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 /**
  * 处理文件上传和下载的接口
@@ -15,6 +18,22 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/files")
 public class FileController {
+
+    @PostMapping("/upload")
+    public Result upload(@RequestParam("file") MultipartFile file) throws Exception {
+        // 找到文件位置
+        String filePath = System.getProperty("user.dir") + "/files/";// 获取当前项目的根路径 （java_project的绝对路径）
+        if (!FileUtil.isDirectory(filePath)) {
+            FileUtil.mkdir(filePath);
+        }
+        byte[] bytes = file.getBytes();
+        String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename(); // 文件的原始名称
+
+        // 写入文件
+        FileUtil.writeBytes(bytes, filePath + fileName);
+        String url = "http://localhost:9999/files/download/" + fileName;
+        return Result.success(url);
+    }
 
     @GetMapping("/download/{fileName}")
     public void download(@PathVariable String fileName, HttpServletResponse response) throws Exception {

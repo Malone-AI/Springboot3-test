@@ -27,6 +27,8 @@ hs_err_pid*
 mvnw
 mvnw.cmd
 
+files/
+
 # Vue.js/前端构建文件
 vue/node_modules/
 node_modules/
