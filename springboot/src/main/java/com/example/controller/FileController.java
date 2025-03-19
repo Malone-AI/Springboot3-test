@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/files")
 public class FileController {
 
-    @GetMapping("/download/{filename}")
+    @GetMapping("/download/{fileName}")
     public void download(@PathVariable String fileName, HttpServletResponse response) throws Exception {
         // 找到文件位置
         String filePath = System.getProperty("user.dir") + "/files/";// 获取当前项目的根路径 （java_project的绝对路径）
