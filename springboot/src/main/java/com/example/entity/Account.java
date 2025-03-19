@@ -9,6 +9,7 @@ public class Account {
     private String email;
     private String role;
     private String token;
+    private String avatar;
 
     public Integer getId() {
         return id;
@@ -72,5 +73,13 @@ public class Account {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 }
