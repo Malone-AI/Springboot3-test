@@ -21,6 +21,11 @@
     <div class="card" style="margin-bottom: 5px;">
       <el-table :data="data.tableData" @selection-change="handlerSelectionChange" style="width: 100%" :header-cell-style="{color: '#333', backgroundColor: '#eaf4FF'}">
         <el-table-column type="selection" width="55"/>
+        <el-table-column label="头像">
+          <template #default="scope">
+            <img v-if="scope.row.avatar" :src="scope.row.avatar" style="width: 40px; height: 40px; border-radius: 50%; display: block"/>
+          </template>
+        </el-table-column>
         <el-table-column prop="username" label="账号"/>
         <el-table-column prop="name" label="名称"/>
         <el-table-column prop="phone" label="电话"/>
