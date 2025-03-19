@@ -12,7 +12,7 @@ public class WebConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(jwtInterceptor())
                 .addPathPatterns("/**") // 验证所有页面
-                .excludePathPatterns("/login", "/register"); // 除去/login 和 /register 页面都进行验证
+                .excludePathPatterns("/login", "/register", "/files/download/**"); // 除去/login 和 /register 页面都进行验证
     }
 
     @Bean
