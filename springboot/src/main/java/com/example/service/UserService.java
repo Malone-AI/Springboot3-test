@@ -5,6 +5,7 @@ import com.example.entity.Account;
 import com.example.entity.User;
 import com.example.exception.CustomerException;
 import com.example.mapper.UserMapper;
+import com.example.utils.TokenUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import jakarta.annotation.Resource;
@@ -84,6 +85,9 @@ public class UserService {
             throw new CustomerException("账号或密码错误");
         }
 
+        // 创建Token并返回给前端
+        String token = TokenUtils.createToken(dbUser.getId() + "-" + "USER", dbUser.getPassword());
+        dbUser.setToken(token);
         return dbUser;
     }
 
